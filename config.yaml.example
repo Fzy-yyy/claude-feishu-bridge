@@ -1,0 +1,71 @@
+# 飞书配置
+feishu:
+  app_id: "cli_xxxxx"  # 替换为你的飞书应用 ID
+  app_secret: "xxxxx"  # 替换为你的飞书应用 Secret
+
+# Claude Code 配置
+claude:
+  # 允许的工作目录白名单（绝对路径）
+  allowed_work_dirs:
+    - "D:/CODE/test-project"
+    - "D:/CODE/my-project"
+
+  # 当前工作目录
+  work_dir: "D:/CODE/test-project"
+
+  # 权限模式: default | acceptEdits | plan | bypassPermissions
+  permission_mode: "default"
+
+  # 预授权工具（这些工具不需要每次确认）
+  allowed_tools:
+    - "Read"
+    - "Grep"
+    - "Glob"
+
+  # 模型
+  model: "claude-sonnet-4-20250514"
+
+# 安全配置
+security:
+  # 是否启用工作目录检查
+  enable_workdir_check: true
+
+  # 禁止的命令关键词（用于 Bash 工具）
+  forbidden_commands:
+    - "rm -rf /"
+    - "dd if="
+    - "mkfs"
+    - "format"
+    - "> /dev/sda"
+    - "del /f /s /q C:\\"
+    - "rmdir /s /q C:\\"
+
+  # 禁止访问的路径模式（支持通配符）
+  forbidden_paths:
+    - "/etc/passwd"
+    - "/etc/shadow"
+    - "~/.ssh/id_rsa"
+    - "*.key"
+    - "*.pem"
+    - "C:/Windows/System32/*"
+
+  # 最大会话时长（秒）
+  max_session_duration: 3600
+
+  # 是否记录所有操作日志
+  audit_log: true
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG | INFO | WARNING | ERROR
+  file: "logs/app.log"
+  rotation: "100 MB"
+  retention: "7 days"
+
+# 会话配置
+session:
+  # 会话超时（秒）
+  timeout: 1800
+
+  # 会话存储路径
+  storage_path: "data/sessions.json"
